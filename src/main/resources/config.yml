@@ -1,0 +1,27 @@
+metrics: true
+
+delay:
+  time: 5
+  unit: SECONDS # SECONDS, MINUTES, HOURS, DAYS, YEARS
+
+menu:
+  size: 27
+  name: "Warps"
+  items:
+    warp-mina: # Não importa
+      icon: DIAMOND_PICKAXE # Ícone do item no menu, suporta tanto IDs como nomes
+      slot: 13 # Slot no menu, começa em 1
+      name: '&aWarp Mina'
+      lore:
+        - '&7Warp Mina'
+      warp: mina # Warp
+    warp-spawn:
+      icon: BOOK_AND_QUILL
+      slot: 15
+      name: '&aSpawn'
+      lore:
+        - '&7Spawn'
+      warp: spawn
+
+
+config-version: 1

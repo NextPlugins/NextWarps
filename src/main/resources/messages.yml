@@ -1,0 +1,11 @@
+messages:
+  errors:
+    no-permission-warp: '&cVocê não tem permissão para teleportar-se até esta warp.'
+    no-permission-adminwarp: '&cVocê não tem permissão para administrar as warps.'
+    warp-not-found: '&cEsta warp não foi encontrada.'
+  success:
+    warp-set: '&aVocê setou a warp %warp% com sucesso.'
+    warp-edit: '&aVocê editou a warp %warp% com sucesso.'
+    warp-del: '&aVocê deletou a warp %warp% com sucesso.'
+    warp-teleport: '&aVocê foi teletransportado para %warp%.'
+
