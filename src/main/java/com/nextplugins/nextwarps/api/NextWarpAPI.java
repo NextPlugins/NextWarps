@@ -70,6 +70,10 @@ public final class NextWarpAPI {
                 .collect(Collectors.toSet());
     }
 
+    public void createWarp(Warp warp) {
+        allWarps().add(warp);
+    }
+
     /**
      * Retrieve all warps loaded so far.
      *
