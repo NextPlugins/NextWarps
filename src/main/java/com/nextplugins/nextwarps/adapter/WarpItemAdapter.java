@@ -1,7 +1,7 @@
 package com.nextplugins.nextwarps.adapter;
 
 import com.github.eikefab.libs.minecraft.item.ItemCreator;
-import com.nextplugins.nextwarps.api.NextWarpAPI;
+import com.nextplugins.nextwarps.NextWarpAPI;
 import com.nextplugins.nextwarps.model.Warp;
 import com.nextplugins.nextwarps.model.WarpItem;
 import com.nextplugins.nextwarps.utils.Type;

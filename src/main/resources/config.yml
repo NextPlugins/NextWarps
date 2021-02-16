@@ -1,9 +1,5 @@
 metrics: true
 
-delay:
-  time: 5
-  unit: SECONDS # SECONDS, MINUTES, HOURS, DAYS, YEARS
-
 menu:
   size: 27
   name: "Warps"

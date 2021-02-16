@@ -19,6 +19,8 @@ public final class WarpAdapter {
         final Set<Warp> set = new HashSet<>();
         final ConfigurationSection section = config.getConfigurationSection("warps");
 
+        if (section == null) return set;
+
         for (String key : section.getKeys(false)) {
             String name = section.getString(key + ".name");
             String permission = section.getString(key + ".permission");
