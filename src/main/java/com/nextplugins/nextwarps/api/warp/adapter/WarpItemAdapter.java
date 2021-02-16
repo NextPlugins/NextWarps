@@ -1,10 +1,10 @@
-package com.nextplugins.nextwarps.adapter;
+package com.nextplugins.nextwarps.api.warp.adapter;
 
 import com.github.eikefab.libs.minecraft.item.ItemCreator;
-import com.nextplugins.nextwarps.NextWarpAPI;
-import com.nextplugins.nextwarps.model.Warp;
-import com.nextplugins.nextwarps.model.WarpItem;
-import com.nextplugins.nextwarps.utils.Type;
+import com.nextplugins.nextwarps.api.NextWarpAPI;
+import com.nextplugins.nextwarps.api.warp.Warp;
+import com.nextplugins.nextwarps.api.warp.WarpItem;
+import com.nextplugins.nextwarps.utils.MaterialParser;
 import lombok.Data;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
@@ -44,7 +44,7 @@ public final class WarpItemAdapter {
     }
 
     public ItemStack getItemStack(ConfigurationSection section) {
-        return ItemCreator.newItem(Type.from(section.getString("icon")))
+        return ItemCreator.newItem(MaterialParser.from(section.getString("icon")))
                 .display(section.getString("name"))
                 .lore(section.getStringList("lore").toArray(new String[] {}))
                 .getItemStack();

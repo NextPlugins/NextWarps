@@ -1,6 +1,7 @@
-package com.nextplugins.nextwarps;
+package com.nextplugins.nextwarps.api;
 
-import com.nextplugins.nextwarps.model.Warp;
+import com.nextplugins.nextwarps.NextWarps;
+import com.nextplugins.nextwarps.api.warp.Warp;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -67,10 +68,6 @@ public final class NextWarpAPI {
         return allWarps().stream()
                 .filter(filter)
                 .collect(Collectors.toSet());
-    }
-
-    public void createWarp(Warp warp) {
-        allWarps().add(warp);
     }
 
     /**
