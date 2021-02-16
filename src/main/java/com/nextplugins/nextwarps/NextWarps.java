@@ -1,6 +1,7 @@
 package com.nextplugins.nextwarps;
 
 import com.github.eikefab.libs.minecraft.InventoryRegistry;
+import com.nextplugins.nextwarps.api.warp.WarpFile;
 import com.nextplugins.nextwarps.api.warp.adapter.WarpAdapter;
 import com.nextplugins.nextwarps.api.warp.adapter.WarpItemAdapter;
 import com.nextplugins.nextwarps.commands.WarpCommand;
@@ -22,14 +23,13 @@ public final class NextWarps extends JavaPlugin {
     /**
      * Metrics plugin id (used for statistics)
      */
-    private static final int PLUGIN_ID = 0;
+    private static final int PLUGIN_ID = 10360;
 
     private FileConfiguration messageConfiguration;
     private FileConfiguration warpConfiguration;
-    
+    private WarpFile warpFile;
     private InventoryRegistry inventoryRegistry;
     private BukkitFrame bukkitFrame;
-
     private WarpAdapter warpAdapter;
     private WarpItemAdapter warpItemAdapter;
 
@@ -39,31 +39,27 @@ public final class NextWarps extends JavaPlugin {
 
     @Override
     public void onLoad() {
-
         saveDefaultConfig();
 
         messageConfiguration = getFile("messages.yml");
         warpConfiguration = getFile("warps.yml");
+        warpFile = new WarpFile(this);
 
         warpAdapter = new WarpAdapter(warpConfiguration);
         warpItemAdapter = new WarpItemAdapter(getConfig(), warpAdapter);
-
     }
 
     @Override
     public void onEnable() {
-
         PluginDependencyManager.of(this).loadAllDependencies().thenRun(() -> {
-
             inventoryRegistry = InventoryRegistry.of(this);
 
             ConfigurationRegistry.of(this).inject();
 
             bukkitFrame = new BukkitFrame(this);
-            bukkitFrame.registerCommands(new WarpCommand());
+            bukkitFrame.registerCommands(new WarpCommand(warpFile));
 
             configureBStats();
-
         });
     }
 
@@ -75,8 +71,8 @@ public final class NextWarps extends JavaPlugin {
         if (!GeneralValue.get(GeneralValue::metrics)) return;
 
         new Metrics(this, PLUGIN_ID);
-        this.getLogger().info("Enabled bStats successfully, statistics enabled");
 
+        this.getLogger().info("Enabled bStats successfully, statistics enabled");
     }
 
 
