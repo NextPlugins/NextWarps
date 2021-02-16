@@ -19,11 +19,14 @@ public final class NextWarps extends JavaPlugin {
 
     private FileConfiguration messageConfiguration;
     private FileConfiguration warpConfiguration;
+    
+    private InventoryRegistry inventoryRegistry;
+    private BukkitFrame bukkitFrame;
 
     private WarpAdapter warpAdapter;
     private WarpItemAdapter warpItemAdapter;
 
-    public void init() {
+    private void init() {
         saveDefaultConfig();
 
         messageConfiguration = getFile("messages.yml");
@@ -32,9 +35,6 @@ public final class NextWarps extends JavaPlugin {
         warpAdapter = new WarpAdapter(warpConfiguration);
         warpItemAdapter = new WarpItemAdapter(getConfig(), warpAdapter);
     }
-
-    private InventoryRegistry inventoryRegistry;
-    private BukkitFrame bukkitFrame;
 
     @Override
     public void onEnable() {
