@@ -1,3 +1,4 @@
+# Ative ou desative o uso do bStats (apenas serve para coletar algumas informações sobre o uso do plugin como quantidade de pessoas usando, servidores e etc...)
 metrics: true
 
 menu:

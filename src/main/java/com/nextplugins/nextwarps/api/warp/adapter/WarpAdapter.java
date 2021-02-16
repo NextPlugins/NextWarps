@@ -1,6 +1,6 @@
-package com.nextplugins.nextwarps.adapter;
+package com.nextplugins.nextwarps.api.warp.adapter;
 
-import com.nextplugins.nextwarps.model.Warp;
+import com.nextplugins.nextwarps.api.warp.Warp;
 import com.nextplugins.nextwarps.utils.Locations;
 import lombok.Data;
 import org.bukkit.Location;

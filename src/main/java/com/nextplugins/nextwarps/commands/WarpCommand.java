@@ -3,11 +3,11 @@ package com.nextplugins.nextwarps.commands;
 import com.github.eikefab.libs.minecraft.InventoryBuilder;
 import com.github.eikefab.libs.minecraft.inventory.CustomInventory;
 import com.nextplugins.nextwarps.NextWarps;
-import com.nextplugins.nextwarps.NextWarpAPI;
-import com.nextplugins.nextwarps.config.GeneralValue;
-import com.nextplugins.nextwarps.config.MessageValue;
-import com.nextplugins.nextwarps.model.Warp;
-import com.nextplugins.nextwarps.model.WarpItem;
+import com.nextplugins.nextwarps.api.NextWarpAPI;
+import com.nextplugins.nextwarps.configuration.GeneralValue;
+import com.nextplugins.nextwarps.configuration.MessageValue;
+import com.nextplugins.nextwarps.api.warp.Warp;
+import com.nextplugins.nextwarps.api.warp.WarpItem;
 import com.nextplugins.nextwarps.utils.Locations;
 import me.saiintbrisson.minecraft.command.annotation.Command;
 import me.saiintbrisson.minecraft.command.command.Context;
@@ -18,7 +18,7 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.util.Optional;
 
-public final class WarpCommands {
+public final class WarpCommand {
 
     private static final NextWarps plugin = NextWarps.getInstance();
     private static final NextWarpAPI api = NextWarpAPI.getInstance();

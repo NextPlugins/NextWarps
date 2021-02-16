@@ -1,4 +1,4 @@
-package com.nextplugins.nextwarps.model;
+package com.nextplugins.nextwarps.api.warp;
 
 import lombok.Data;
 import org.bukkit.entity.Player;
@@ -13,9 +13,6 @@ public class WarpItem {
     private final Warp warp;
 
     public void handleClick(InventoryClickEvent event) {
-        final Player player = (Player) event.getWhoClicked();
-
         event.getWhoClicked().teleport(warp.getLocation());
-
     }
 }

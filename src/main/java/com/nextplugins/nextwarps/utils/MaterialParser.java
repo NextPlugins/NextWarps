@@ -2,7 +2,7 @@ package com.nextplugins.nextwarps.utils;
 
 import org.bukkit.Material;
 
-public final class Type {
+public final class MaterialParser {
 
     public static Material from(String text) {
         if (isInteger(text)) {
