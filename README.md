@@ -26,5 +26,5 @@ O nosso plugin já baixa automaticamente suas dependências, portanto, não é n
 ### Bibliotecas usadas
 
 -   [CustomInventory](https://github.com/eikefab/custominventory) - Biblioteca para criações de inventários;
--   [command-framework](https://github.com/SaiintBrisson/command -framework) - Biblioteca para criações de comandos;
+-   [command-framework](https://github.com/SaiintBrisson/command-framework) - Biblioteca para criações de comandos;
 -   [configuration-injector](https://github.com/HenryFabio/configuration-injector) - Biblioteca para injeção de dados da configuração de forma mais fácil.
