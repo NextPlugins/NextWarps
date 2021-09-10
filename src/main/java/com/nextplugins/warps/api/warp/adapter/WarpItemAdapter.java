@@ -1,11 +1,13 @@
 package com.nextplugins.warps.api.warp.adapter;
 
-import com.github.eikefab.libs.minecraft.item.ItemCreator;
+import com.nextplugins.warps.NextWarps;
 import com.nextplugins.warps.api.NextWarpAPI;
 import com.nextplugins.warps.api.warp.Warp;
 import com.nextplugins.warps.api.warp.WarpItem;
+import com.nextplugins.warps.utils.ItemBuilder;
 import com.nextplugins.warps.utils.MaterialParser;
 import lombok.Data;
+import lombok.val;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
@@ -35,6 +37,11 @@ public final class WarpItemAdapter {
             if (!warp.isPresent()) continue;
 
             final ItemStack iconStack = getItemStack(iconSection);
+            if (iconStack == null) {
+                NextWarps.getInstance().getLogger().warning("Não foi possível criar o item " + key + " no menu (Item inválido)");
+                continue;
+            }
+
             final int slot = iconSection.getInt("slot");
 
             set.add(new WarpItem(iconStack, slot, warp.get()));
@@ -44,10 +51,25 @@ public final class WarpItemAdapter {
     }
 
     public ItemStack getItemStack(ConfigurationSection section) {
-        return ItemCreator.newItem(MaterialParser.from(section.getString("icon")))
-                .display(section.getString("name"))
-                .lore(section.getStringList("lore").toArray(new String[] {}))
-                .getItemStack();
+
+        val icon = section.getString("icon", "");
+        val data = section.getInt("data", -1);
+        val head = section.getString("head", "");
+
+        ItemBuilder itemBuilder;
+        if (icon.equals("") || data == -1) {
+            if (head.equals("")) {
+                return null;
+            }
+
+            itemBuilder = new ItemBuilder(head);
+        } else {
+            itemBuilder = new ItemBuilder(MaterialParser.from(icon, data));
+        }
+
+        return itemBuilder.name(section.getString("name"))
+                .setLore(section.getStringList("lore").toArray(new String[] {}))
+                .wrap();
     }
 
 }
