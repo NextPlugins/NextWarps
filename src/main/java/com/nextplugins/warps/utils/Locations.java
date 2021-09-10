@@ -1,11 +1,11 @@
 package com.nextplugins.warps.utils;
 
-import static java.lang.Double.parseDouble;
-import static java.lang.Float.parseFloat;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+
+import static java.lang.Double.parseDouble;
+import static java.lang.Float.parseFloat;
 
 public final class Locations {
 

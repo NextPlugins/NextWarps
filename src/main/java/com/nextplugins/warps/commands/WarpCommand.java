@@ -2,13 +2,12 @@ package com.nextplugins.warps.commands;
 
 import com.nextplugins.warps.NextWarps;
 import com.nextplugins.warps.api.NextWarpAPI;
+import com.nextplugins.warps.api.warp.Warp;
 import com.nextplugins.warps.api.warp.WarpFile;
 import com.nextplugins.warps.api.warp.WarpInventory;
 import com.nextplugins.warps.configuration.MessageValue;
-import com.nextplugins.warps.api.warp.Warp;
 import com.nextplugins.warps.utils.CaseInsensitiveMap;
 import lombok.Getter;
-import lombok.val;
 import me.saiintbrisson.minecraft.command.annotation.Command;
 import me.saiintbrisson.minecraft.command.annotation.Optional;
 import me.saiintbrisson.minecraft.command.command.Context;
@@ -69,7 +68,7 @@ public final class WarpCommand {
                 ++i;
             }
 
-            player.sendMessage(MessageValue.get(MessageValue::warpList).replace("$warps", stringBuilder));
+            player.sendMessage(MessageValue.get(MessageValue::warpList).replace("%warps%", stringBuilder));
         }
     }
 
@@ -92,9 +91,6 @@ public final class WarpCommand {
 
         Warp warp = new Warp(warpName, permission, player.getLocation());
         warpFile.create(warp);
-
-        CaseInsensitiveMap<Warp> warps = NextWarps.getInstance().getWarpCache().getWarps();
-        warps.put(warpName, warp);
 
         player.sendMessage(MessageValue.get(MessageValue::warpSet).replace("%warp%", warpName));
     }

@@ -1,10 +1,9 @@
 package com.nextplugins.warps.utils;
 
 import com.nextplugins.warps.NextWarps;
-import org.bukkit.Material;
-
 import lombok.val;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
 

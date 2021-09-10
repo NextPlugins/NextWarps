@@ -5,13 +5,9 @@ import com.nextplugins.warps.api.warp.Warp;
 import com.nextplugins.warps.utils.CaseInsensitiveMap;
 import com.nextplugins.warps.utils.Locations;
 import lombok.Data;
-import lombok.val;
 import org.bukkit.Location;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Data(staticConstructor = "of")
 public final class WarpAdapter {
