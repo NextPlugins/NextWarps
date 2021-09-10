@@ -15,7 +15,7 @@
 teleportDelay: 5
 
 menu:
-  size: 27
+  lines: 3
   name: "Warps"
   items:
     warp-mina: # Não importa

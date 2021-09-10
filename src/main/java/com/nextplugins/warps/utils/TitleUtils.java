@@ -69,12 +69,10 @@ public class TitleUtils {
                             Integer.TYPE
                     );
 
-            Object packet = constructor.newInstance(
+            return constructor.newInstance(
                     PacketUtils.getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0].getField(type).get(null),
                     component, fadeIn, stay, fadeOut
             );
-
-            return packet;
 
         } catch (Exception ignored) {
         }

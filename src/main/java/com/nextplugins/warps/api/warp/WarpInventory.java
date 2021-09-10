@@ -20,7 +20,7 @@ public final class WarpInventory {
     private static final CustomInventory INVENTORY;
 
     static {
-        INVENTORY = INVENTORY_REGISTRY.create(InventoryBuilder.newBuilder().title(MENU_NAME).size(MENU_SIZE));
+        INVENTORY = INVENTORY_REGISTRY.create(InventoryBuilder.newBuilder().title(MENU_NAME).size(MENU_SIZE * 9));
 
         for (WarpItem item : ITEM_ADAPTER.getWarpItems()) {
             INVENTORY.set(item.getSlot() - 1, item.getIcon()).thenClick(item::handleClick);

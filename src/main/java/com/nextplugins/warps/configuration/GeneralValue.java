@@ -22,7 +22,7 @@ public final class GeneralValue implements ConfigurationInjectable {
 
     @ConfigField("teleportDelay") private int delay;
 
-    @ConfigField("menu.size") private int menuSize;
+    @ConfigField("menu.lines") private int menuSize;
     @ConfigField("menu.name") private String menuName;
 
     @ConfigField("config-version") private int configVersion;

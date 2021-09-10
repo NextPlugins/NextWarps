@@ -69,7 +69,7 @@ public final class WarpCommand {
 
                             TitleUtils.sendTitle(
                                     player, MessageValue.get(MessageValue::teleported).replace("%warp%", warp.getName()),
-                                    20, 40, 20
+                                    0, 60, 40
                             );
 
                             Bukkit.getScheduler().cancelTask(taskId.get());
@@ -79,7 +79,7 @@ public final class WarpCommand {
                         TitleUtils.sendTitle(
                                 player,
                                 MessageValue.get(MessageValue::teleporting).replace("%delay%", String.valueOf(i)).replace("%plural%", i == 1 ? "" : "s"),
-                                5, 20, 5
+                                0, 60, 0
                         );
 
                     }, 0L, 20L).getTaskId());
