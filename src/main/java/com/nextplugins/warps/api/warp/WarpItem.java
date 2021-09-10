@@ -1,6 +1,6 @@
-package com.nextplugins.nextwarps.api.warp;
+package com.nextplugins.warps.api.warp;
 
-import com.nextplugins.nextwarps.configuration.MessageValue;
+import com.nextplugins.warps.configuration.MessageValue;
 import lombok.Data;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;

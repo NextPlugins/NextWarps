@@ -1,7 +1,7 @@
-package com.nextplugins.nextwarps.api;
+package com.nextplugins.warps.api;
 
-import com.nextplugins.nextwarps.NextWarps;
-import com.nextplugins.nextwarps.api.warp.Warp;
+import com.nextplugins.warps.NextWarps;
+import com.nextplugins.warps.api.warp.Warp;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

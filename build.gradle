@@ -1,6 +1,6 @@
 plugins {
     id "java"
-    id 'me.bristermitten.pdm' version '0.0.30'
+
     id 'com.github.johnrengelman.shadow' version '5.0.0'
     id 'net.minecrell.plugin-yml.bukkit' version '0.3.0'
 }
@@ -8,11 +8,10 @@ plugins {
 group 'com.nextplugins'
 version '1.0.0'
 
-tasks.build.dependsOn('pdm', 'shadowJar')
+tasks.build.dependsOn('shadowJar')
 
 repositories {
     mavenCentral()
-    jcenter()
 
     maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
     maven { url = 'https://oss.sonatype.org/content/groups/public/' }
@@ -23,32 +22,36 @@ repositories {
 }
 
 dependencies {
-    compileOnly "org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT"
+    compileOnly "org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT"
 
     implementation "com.github.eikefab:CustomInventory:ebcf3f76eabe6bda1a751c1bc253ad104a3ee035"
-    implementation 'com.github.HenryFabio:configuration-injector:main-SNAPSHOT'
-    implementation "org.bstats:bstats-bukkit:1.8"
+    implementation 'com.github.HenryFabio.configuration-injector:bukkit:1.0.2'
+    implementation 'com.github.SaiintBrisson.command-framework:bukkit:1.2.0'
+    implementation 'org.bstats:bstats-bukkit:2.2.1'
 
-    pdm "com.github.SaiintBrisson:command-framework:1.1.0"
-
-    def lombok = "org.projectlombok:lombok:1.18.16"
+    def lombok = "org.projectlombok:lombok:1.18.20"
 
     compileOnly lombok
     annotationProcessor lombok
 }
 
 bukkit {
-    main = 'com.nextplugins.nextwarps.NextWarps'
+    main = 'com.nextplugins.warps.NextWarps'
     authors = ['Henry_Fabio', 'Eike', 'Gabriel Santos', 'Yuhtin']
     website = 'https://github.com/NextPlugins'
+    apiVersion = '1.13'
 }
 
 shadowJar {
     archiveName("${project.name}-${project.version}.jar")
 
-    relocate 'com.github.eikefab.libs.minecraft', 'com.nextplugins.nextwarps.libs.custominventory'
-    relocate 'com.henryfabio.minecraft.configinjector', 'com.nextplugins.nextwarps.libs.configinjector'
-    relocate 'org.bstats', 'com.nextplugins.nextwarps.libs.bstats'
+    relocate 'com.github.eikefab.libs.minecraft', 'com.nextplugins.warps.libs.custominventory'
+    relocate 'com.henryfabio.minecraft.configinjector', 'com.nextplugins.warps.libs.configinjector'
+
+    relocate 'me.saiintbrisson.minecraft.command', 'com.nextplugins.warps.libs.command.common'
+    relocate 'me.saiintbrisson.bukkit.command', 'com.nextplugins.warps.libs.command.bukkit'
+
+    relocate 'org.bstats', 'com.nextplugins.warps.libs.bstats'
 }
 
 compileJava {

@@ -1,8 +1,8 @@
-package com.nextplugins.nextwarps.api.warp;
+package com.nextplugins.warps.api.warp;
 
-import com.nextplugins.nextwarps.NextWarps;
-import com.nextplugins.nextwarps.api.NextWarpAPI;
-import com.nextplugins.nextwarps.utils.Locations;
+import com.nextplugins.warps.NextWarps;
+import com.nextplugins.warps.api.NextWarpAPI;
+import com.nextplugins.warps.utils.Locations;
 import lombok.Getter;
 import org.bukkit.configuration.file.FileConfiguration;
 

@@ -1,4 +1,4 @@
-package com.nextplugins.nextwarps.utils;
+package com.nextplugins.warps.utils;
 
 import org.bukkit.Material;
 

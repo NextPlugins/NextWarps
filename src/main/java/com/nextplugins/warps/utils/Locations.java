@@ -1,4 +1,4 @@
-package com.nextplugins.nextwarps.utils;
+package com.nextplugins.warps.utils;
 
 import static java.lang.Double.parseDouble;
 import static java.lang.Float.parseFloat;

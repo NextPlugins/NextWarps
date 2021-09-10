@@ -1,10 +1,10 @@
-package com.nextplugins.nextwarps.commands;
+package com.nextplugins.warps.commands;
 
-import com.nextplugins.nextwarps.api.NextWarpAPI;
-import com.nextplugins.nextwarps.api.warp.WarpFile;
-import com.nextplugins.nextwarps.api.warp.WarpInventory;
-import com.nextplugins.nextwarps.configuration.MessageValue;
-import com.nextplugins.nextwarps.api.warp.Warp;
+import com.nextplugins.warps.api.NextWarpAPI;
+import com.nextplugins.warps.api.warp.WarpFile;
+import com.nextplugins.warps.api.warp.WarpInventory;
+import com.nextplugins.warps.configuration.MessageValue;
+import com.nextplugins.warps.api.warp.Warp;
 import lombok.Getter;
 import me.saiintbrisson.minecraft.command.annotation.Command;
 import me.saiintbrisson.minecraft.command.annotation.Optional;

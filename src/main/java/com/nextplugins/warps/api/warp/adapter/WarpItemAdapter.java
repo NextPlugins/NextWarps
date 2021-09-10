@@ -1,10 +1,10 @@
-package com.nextplugins.nextwarps.api.warp.adapter;
+package com.nextplugins.warps.api.warp.adapter;
 
 import com.github.eikefab.libs.minecraft.item.ItemCreator;
-import com.nextplugins.nextwarps.api.NextWarpAPI;
-import com.nextplugins.nextwarps.api.warp.Warp;
-import com.nextplugins.nextwarps.api.warp.WarpItem;
-import com.nextplugins.nextwarps.utils.MaterialParser;
+import com.nextplugins.warps.api.NextWarpAPI;
+import com.nextplugins.warps.api.warp.Warp;
+import com.nextplugins.warps.api.warp.WarpItem;
+import com.nextplugins.warps.utils.MaterialParser;
 import lombok.Data;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;

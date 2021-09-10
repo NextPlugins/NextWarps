@@ -1,4 +1,4 @@
-package com.nextplugins.nextwarps.configuration;
+package com.nextplugins.warps.configuration;
 
 import com.henryfabio.minecraft.configinjector.common.annotations.ConfigField;
 import com.henryfabio.minecraft.configinjector.common.annotations.ConfigFile;
