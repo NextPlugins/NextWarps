@@ -1,10 +1,12 @@
 package com.nextplugins.warps.commands;
 
+import com.nextplugins.warps.NextWarps;
 import com.nextplugins.warps.api.NextWarpAPI;
 import com.nextplugins.warps.api.warp.WarpFile;
 import com.nextplugins.warps.api.warp.WarpInventory;
 import com.nextplugins.warps.configuration.MessageValue;
 import com.nextplugins.warps.api.warp.Warp;
+import com.nextplugins.warps.utils.CaseInsensitiveMap;
 import lombok.Getter;
 import lombok.val;
 import me.saiintbrisson.minecraft.command.annotation.Command;
@@ -78,21 +80,23 @@ public final class WarpCommand {
             target = CommandTarget.PLAYER,
             usage = "setwarp <warp> [permissão]"
     )
-    public void setWarp(Context<Player> context, String warp, @Optional(def = "nextwarps.use") String permission) {
+    public void setWarp(Context<Player> context, String warpName, @Optional(def = "nextwarps.use") String permission) {
         final Player player = context.getSender();
 
-        final java.util.Optional<Warp> warpFound = api.findWarpByName(warp);
+        final java.util.Optional<Warp> warpFound = api.findWarpByName(warpName);
 
         if (warpFound.isPresent()) {
             player.sendMessage(MessageValue.get(MessageValue::warpAlreadyExists));
-
             return;
         }
 
-        warpFile.create(new Warp(warp, permission, player.getLocation()));
+        Warp warp = new Warp(warpName, permission, player.getLocation());
+        warpFile.create(warp);
 
+        CaseInsensitiveMap<Warp> warps = NextWarps.getInstance().getWarpCache().getWarps();
+        warps.put(warpName, warp);
 
-        player.sendMessage(MessageValue.get(MessageValue::warpSet).replace("%warp%", warp));
+        player.sendMessage(MessageValue.get(MessageValue::warpSet).replace("%warp%", warpName));
     }
 
     @Command(
@@ -109,6 +113,9 @@ public final class WarpCommand {
 
         if (warpByName.isPresent()) {
             warpFile.delete(warp);
+
+            CaseInsensitiveMap<Warp> warps = NextWarps.getInstance().getWarpCache().getWarps();
+            warps.remove(warp);
 
             player.sendMessage(MessageValue.get(MessageValue::warpDel).replace("%warp%", warp));
         } else {
