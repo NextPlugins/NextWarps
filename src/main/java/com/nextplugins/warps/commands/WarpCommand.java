@@ -7,6 +7,7 @@ import com.nextplugins.warps.api.warp.WarpFile;
 import com.nextplugins.warps.api.warp.WarpInventory;
 import com.nextplugins.warps.configuration.MessageValue;
 import com.nextplugins.warps.utils.CaseInsensitiveMap;
+import com.nextplugins.warps.utils.ColorUtil;
 import lombok.Getter;
 import me.saiintbrisson.minecraft.command.annotation.Command;
 import me.saiintbrisson.minecraft.command.annotation.Optional;
@@ -44,10 +45,13 @@ public final class WarpCommand {
 
             if (warpSearcher.isPresent()) {
                 final Warp warp = warpSearcher.get();
+                if (warp.getLocation() == null) {
+                    player.sendMessage(ColorUtil.colored("&cOcorreu um erro, a localização é inválida!"));
+                    return;
+                }
 
                 if (player.hasPermission(warp.getPermission())) {
                     player.teleport(warp.getLocation());
-
                     player.sendMessage(MessageValue.get(MessageValue::warpTeleport).replace("%warp%", targetWarp));
                 }
 
