@@ -21,6 +21,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
 public final class WarpCommand {
@@ -57,21 +58,32 @@ public final class WarpCommand {
                 if (player.hasPermission(warp.getPermission())) {
 
                     val duration = GeneralValue.get(GeneralValue::delay);
-                    TitleUtils.sendTitle(
-                            player,
-                            MessageValue.get(MessageValue::teleporting).replace("%delay%", String.valueOf(duration)),
-                            20, duration, 20
-                    );
 
-                    Bukkit.getScheduler().runTaskLater(NextWarps.getInstance(), () -> {
-                        player.teleport(warp.getLocation());
-                        player.sendMessage(MessageValue.get(MessageValue::warpTeleport).replace("%warp%", warp.getName()));
+                    AtomicInteger secondsRemaining = new AtomicInteger(duration + 1);
+                    AtomicInteger taskId = new AtomicInteger();
+                    taskId.set(Bukkit.getScheduler().runTaskTimerAsynchronously(NextWarps.getInstance(), () -> {
+                        int i = secondsRemaining.decrementAndGet();
+                        if (i == 0) {
+                            player.teleport(warp.getLocation());
+                            player.sendMessage(MessageValue.get(MessageValue::warpTeleport).replace("%warp%", warp.getName()));
+
+                            TitleUtils.sendTitle(
+                                    player, MessageValue.get(MessageValue::teleported).replace("%warp%", warp.getName()),
+                                    20, 40, 20
+                            );
+
+                            Bukkit.getScheduler().cancelTask(taskId.get());
+                            return;
+                        }
 
                         TitleUtils.sendTitle(
-                                player, MessageValue.get(MessageValue::teleported).replace("%warp%", warp.getName()),
-                                20, 40, 20
+                                player,
+                                MessageValue.get(MessageValue::teleporting).replace("%delay%", String.valueOf(i)).replace("%plural%", i == 1 ? "" : "s"),
+                                5, 20, 5
                         );
-                    }, 20L * duration);
+
+                    }, 0L, 20L).getTaskId());
+
                     return;
                 }
 
