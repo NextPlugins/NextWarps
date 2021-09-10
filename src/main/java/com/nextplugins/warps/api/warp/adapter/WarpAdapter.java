@@ -19,6 +19,8 @@ public final class WarpAdapter {
     private final Configuration config;
 
     public void loadWarps() {
+        if (!config.contains("warps")) return;
+
         final ConfigurationSection section = config.getConfigurationSection("warps");
         CaseInsensitiveMap<Warp> warps = NextWarps.getInstance().getWarpCache().getWarps();
 
