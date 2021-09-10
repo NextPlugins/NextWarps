@@ -1,6 +1,7 @@
 package com.nextplugins.warps;
 
 import com.github.eikefab.libs.minecraft.InventoryRegistry;
+import com.nextplugins.warps.api.warp.WarpCache;
 import com.nextplugins.warps.api.warp.WarpFile;
 import com.nextplugins.warps.api.warp.adapter.WarpAdapter;
 import com.nextplugins.warps.api.warp.adapter.WarpItemAdapter;
@@ -23,13 +24,15 @@ public final class NextWarps extends JavaPlugin {
      */
     private static final int PLUGIN_ID = 10360;
 
-    private FileConfiguration messageConfiguration;
-    private FileConfiguration warpConfiguration;
-    private WarpFile warpFile;
-    private InventoryRegistry inventoryRegistry;
-    private BukkitFrame bukkitFrame;
+
+    private WarpCache warpCache;
     private WarpAdapter warpAdapter;
     private WarpItemAdapter warpItemAdapter;
+
+    private InventoryRegistry inventoryRegistry;
+
+    private WarpFile warpFile;
+    private FileConfiguration warpConfiguration;
 
     public static NextWarps getInstance() {
         return getPlugin(NextWarps.class);
@@ -39,12 +42,15 @@ public final class NextWarps extends JavaPlugin {
     public void onLoad() {
         saveDefaultConfig();
 
-        messageConfiguration = getFile("messages.yml");
         warpConfiguration = getFile("warps.yml");
         warpFile = new WarpFile(this);
 
-        warpAdapter = new WarpAdapter(warpConfiguration);
+
+        warpCache = new WarpCache();
+        WarpAdapter.of(warpConfiguration).loadWarps();
         warpItemAdapter = new WarpItemAdapter(getConfig(), warpAdapter);
+
+        getLogger().info("Plugin ligado com sucesso");
     }
 
     @Override
@@ -53,7 +59,7 @@ public final class NextWarps extends JavaPlugin {
 
         ConfigurationRegistry.of(this).inject();
 
-        bukkitFrame = new BukkitFrame(this);
+        BukkitFrame bukkitFrame = new BukkitFrame(this);
         bukkitFrame.registerCommands(new WarpCommand(warpFile));
 
         new Metrics(this, PLUGIN_ID);

@@ -1,8 +1,11 @@
 package com.nextplugins.warps.api.warp.adapter;
 
+import com.nextplugins.warps.NextWarps;
 import com.nextplugins.warps.api.warp.Warp;
+import com.nextplugins.warps.utils.CaseInsensitiveMap;
 import com.nextplugins.warps.utils.Locations;
 import lombok.Data;
+import lombok.val;
 import org.bukkit.Location;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
@@ -10,16 +13,14 @@ import org.bukkit.configuration.ConfigurationSection;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Data(staticConstructor = "of")
 public final class WarpAdapter {
 
     private final Configuration config;
 
-    public Set<Warp> getWarps() {
-        final Set<Warp> set = new HashSet<>();
+    public void loadWarps() {
         final ConfigurationSection section = config.getConfigurationSection("warps");
-
-        if (section == null) return set;
+        CaseInsensitiveMap<Warp> warps = NextWarps.getInstance().getWarpCache().getWarps();
 
         for (String key : section.getKeys(false)) {
             String name = section.getString(key + ".name");
@@ -27,10 +28,8 @@ public final class WarpAdapter {
 
             Location location = Locations.from(section.getString(key + ".location"));
 
-            set.add(new Warp(name, permission, location));
+            warps.put(name, new Warp(name, permission, location));
         }
-
-        return set;
     }
 
 }

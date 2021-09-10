@@ -25,6 +25,7 @@ public final class MessageValue implements ConfigurationInjectable {
     @ConfigField("errors.no-permission-warp") private String warpNoPermission;
     @ConfigField("errors.no-permission-adminwarp") private String adminWarpNoPermission;
     @ConfigField("errors.warp-not-found") private String warpNotFound;
+    @ConfigField("errors.warp-list") private String warpList;
     @ConfigField("errors.warp-already-exists") private String warpAlreadyExists;
 
     @ConfigField("success.warp-set") private String warpSet;

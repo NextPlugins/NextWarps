@@ -6,12 +6,15 @@ import com.nextplugins.warps.api.warp.WarpInventory;
 import com.nextplugins.warps.configuration.MessageValue;
 import com.nextplugins.warps.api.warp.Warp;
 import lombok.Getter;
+import lombok.val;
 import me.saiintbrisson.minecraft.command.annotation.Command;
 import me.saiintbrisson.minecraft.command.annotation.Optional;
 import me.saiintbrisson.minecraft.command.command.Context;
 import me.saiintbrisson.minecraft.command.target.CommandTarget;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+
+import java.util.Set;
 
 @Getter
 public final class WarpCommand {
@@ -47,10 +50,24 @@ public final class WarpCommand {
                     player.sendMessage(MessageValue.get(MessageValue::warpTeleport).replace("%warp%", targetWarp));
                 }
 
+                player.sendMessage(MessageValue.get(MessageValue::warpNoPermission));
+
                 return;
             }
 
             player.sendMessage(MessageValue.get(MessageValue::warpNotFound));
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            int i = 1;
+            Set<Warp> warpsByAttachment = NextWarpAPI.getInstance().findWarpsByAttachment(player);
+            for (Warp warp : warpsByAttachment) {
+                if (i == 1) stringBuilder.append(", ");
+                stringBuilder.append(warp.getName());
+                ++i;
+            }
+
+            player.sendMessage(MessageValue.get(MessageValue::warpList).replace("$warps", stringBuilder));
         }
     }
 
@@ -73,6 +90,7 @@ public final class WarpCommand {
         }
 
         warpFile.create(new Warp(warp, permission, player.getLocation()));
+
 
         player.sendMessage(MessageValue.get(MessageValue::warpSet).replace("%warp%", warp));
     }
