@@ -1,4 +1,4 @@
-package com.nextplugins.nextwarps.configuration;
+package com.nextplugins.warps.configuration;
 
 import com.henryfabio.minecraft.configinjector.common.annotations.ConfigField;
 import com.henryfabio.minecraft.configinjector.common.annotations.ConfigFile;
@@ -20,12 +20,9 @@ public final class GeneralValue implements ConfigurationInjectable {
 
     @Getter private static final GeneralValue instance = new GeneralValue();
 
-    @ConfigField("metrics") private boolean metrics;
+    @ConfigField("teleportDelay") private int delay;
 
-    @ConfigField("delay.time") private int delayTime;
-    @ConfigField("delay.unit") private String delayUnit;
-
-    @ConfigField("menu.size") private int menuSize;
+    @ConfigField("menu.lines") private int menuSize;
     @ConfigField("menu.name") private String menuName;
 
     @ConfigField("config-version") private int configVersion;

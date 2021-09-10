@@ -1,4 +1,4 @@
-package com.nextplugins.nextwarps.configuration;
+package com.nextplugins.warps.configuration;
 
 import com.henryfabio.minecraft.configinjector.common.annotations.ConfigField;
 import com.henryfabio.minecraft.configinjector.common.annotations.ConfigFile;
@@ -25,12 +25,16 @@ public final class MessageValue implements ConfigurationInjectable {
     @ConfigField("errors.no-permission-warp") private String warpNoPermission;
     @ConfigField("errors.no-permission-adminwarp") private String adminWarpNoPermission;
     @ConfigField("errors.warp-not-found") private String warpNotFound;
+    @ConfigField("errors.warp-list") private String warpList;
     @ConfigField("errors.warp-already-exists") private String warpAlreadyExists;
 
     @ConfigField("success.warp-set") private String warpSet;
     @ConfigField("success.warp-edit") private String warpEdit;
     @ConfigField("success.warp-del") private String warpDel;
     @ConfigField("success.warp-teleport") private String warpTeleport;
+
+    @ConfigField("titles.teleporting") private String teleporting;
+    @ConfigField("titles.teleported") private String teleported;
 
     public static <T> T get(Function<MessageValue, T> function) {
        return function.apply(instance);

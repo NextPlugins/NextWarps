@@ -1,11 +1,13 @@
-package com.nextplugins.nextwarps.api;
+package com.nextplugins.warps.api;
 
-import com.nextplugins.nextwarps.NextWarps;
-import com.nextplugins.nextwarps.api.warp.Warp;
+import com.nextplugins.warps.NextWarps;
+import com.nextplugins.warps.api.warp.Warp;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.bukkit.entity.Player;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -25,13 +27,7 @@ public final class NextWarpAPI {
      * @return {@link Optional} with the warp
      */
     public Optional<Warp> findWarpByName(String warp) {
-        Warp target = null;
-
-        for (Warp pluginWarp : allWarps()) {
-            if (pluginWarp.getName().equalsIgnoreCase(warp)) target = pluginWarp;
-        }
-
-        return Optional.ofNullable(target);
+        return Optional.ofNullable(plugin.getWarpCache().getWarps().getOrDefault(warp, null));
     }
 
     /**
@@ -59,6 +55,18 @@ public final class NextWarpAPI {
     }
 
     /**
+     * Retrieve all warps with the permissions.
+     *
+     * @param player player user
+     * @return {@link Set} with warps
+     */
+    public Set<Warp> findWarpsByAttachment(Player player) {
+        return allWarps().stream()
+                .filter(warp -> player.hasPermission(warp.getPermission()))
+                .collect(Collectors.toSet());
+    }
+
+    /**
      * Search all warps to look for every with the entered custom filter.
      *
      * @param filter custom filter to search
@@ -73,10 +81,10 @@ public final class NextWarpAPI {
     /**
      * Retrieve all warps loaded so far.
      *
-     * @return {@link Set} with warps
+     * @return {@link Collection} with warps
      */
-    public Set<Warp> allWarps() {
-        return plugin.getWarpAdapter().getWarps();
+    public Collection<Warp> allWarps() {
+        return plugin.getWarpCache().getWarps().values();
     }
 
 }

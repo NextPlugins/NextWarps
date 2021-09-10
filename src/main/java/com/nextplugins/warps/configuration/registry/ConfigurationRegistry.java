@@ -1,8 +1,8 @@
-package com.nextplugins.nextwarps.configuration.registry;
+package com.nextplugins.warps.configuration.registry;
 
 import com.henryfabio.minecraft.configinjector.bukkit.injector.BukkitConfigurationInjector;
-import com.nextplugins.nextwarps.configuration.GeneralValue;
-import com.nextplugins.nextwarps.configuration.MessageValue;
+import com.nextplugins.warps.configuration.GeneralValue;
+import com.nextplugins.warps.configuration.MessageValue;
 import lombok.Data;
 import org.bukkit.plugin.Plugin;
 
