@@ -5,18 +5,23 @@ import com.nextplugins.warps.api.NextWarpAPI;
 import com.nextplugins.warps.api.warp.Warp;
 import com.nextplugins.warps.api.warp.WarpFile;
 import com.nextplugins.warps.api.warp.WarpInventory;
+import com.nextplugins.warps.configuration.GeneralValue;
 import com.nextplugins.warps.configuration.MessageValue;
 import com.nextplugins.warps.utils.CaseInsensitiveMap;
 import com.nextplugins.warps.utils.ColorUtil;
+import com.nextplugins.warps.utils.TitleUtils;
 import lombok.Getter;
+import lombok.val;
 import me.saiintbrisson.minecraft.command.annotation.Command;
 import me.saiintbrisson.minecraft.command.annotation.Optional;
 import me.saiintbrisson.minecraft.command.command.Context;
 import me.saiintbrisson.minecraft.command.target.CommandTarget;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 @Getter
 public final class WarpCommand {
@@ -51,8 +56,24 @@ public final class WarpCommand {
                 }
 
                 if (player.hasPermission(warp.getPermission())) {
-                    player.teleport(warp.getLocation());
-                    player.sendMessage(MessageValue.get(MessageValue::warpTeleport).replace("%warp%", targetWarp));
+
+                    val duration = GeneralValue.get(GeneralValue::delay);
+                    TitleUtils.sendTitle(
+                            player,
+                            MessageValue.get(MessageValue::teleporting).replace("%delay%", String.valueOf(duration)),
+                            60, 60, 60
+                    );
+
+                    Bukkit.getScheduler().runTaskLater(NextWarps.getInstance(), () -> {
+                        player.teleport(warp.getLocation());
+                        player.sendMessage(MessageValue.get(MessageValue::warpTeleport).replace("%warp%", warp.getName()));
+
+                        TitleUtils.sendTitle(
+                                player, MessageValue.get(MessageValue::teleported).replace("%warp%", warp.getName()),
+                                20, 40, 20
+                        );
+                    }, 20 * TimeUnit.SECONDS.toMillis(duration));
+                    return;
                 }
 
                 player.sendMessage(MessageValue.get(MessageValue::warpNoPermission));

@@ -10,3 +10,6 @@ messages:
     warp-edit: '&aVocê editou a warp %warp% com sucesso.'
     warp-del: '&aVocê deletou a warp %warp% com sucesso.'
     warp-teleport: '&aVocê foi teletransportado para %warp%.'
+  titles:
+    teleporting: '&6&lWARPS<nl>&fTeleportando em &e%delay% segundos'
+    teleported: '&6&lWARPS<nl>&fTeleportado pra a warp &e%warp%'

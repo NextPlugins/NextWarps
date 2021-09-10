@@ -20,6 +20,8 @@ public final class GeneralValue implements ConfigurationInjectable {
 
     @Getter private static final GeneralValue instance = new GeneralValue();
 
+    @ConfigField("teleportDelay") private int delay;
+
     @ConfigField("menu.size") private int menuSize;
     @ConfigField("menu.name") private String menuName;
 

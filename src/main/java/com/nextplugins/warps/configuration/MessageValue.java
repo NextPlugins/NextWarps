@@ -33,6 +33,9 @@ public final class MessageValue implements ConfigurationInjectable {
     @ConfigField("success.warp-del") private String warpDel;
     @ConfigField("success.warp-teleport") private String warpTeleport;
 
+    @ConfigField("titles.teleporting") private String teleporting;
+    @ConfigField("titles.teleported") private String teleported;
+
     public static <T> T get(Function<MessageValue, T> function) {
        return function.apply(instance);
     }
