@@ -20,11 +20,6 @@ public final class GeneralValue implements ConfigurationInjectable {
 
     @Getter private static final GeneralValue instance = new GeneralValue();
 
-    @ConfigField("metrics") private boolean metrics;
-
-    @ConfigField("delay.time") private int delayTime;
-    @ConfigField("delay.unit") private String delayUnit;
-
     @ConfigField("menu.size") private int menuSize;
     @ConfigField("menu.name") private String menuName;
 
