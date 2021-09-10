@@ -21,7 +21,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 @Getter
 public final class WarpCommand {
@@ -61,7 +60,7 @@ public final class WarpCommand {
                     TitleUtils.sendTitle(
                             player,
                             MessageValue.get(MessageValue::teleporting).replace("%delay%", String.valueOf(duration)),
-                            60, 60, 60
+                            20, duration, 20
                     );
 
                     Bukkit.getScheduler().runTaskLater(NextWarps.getInstance(), () -> {
@@ -72,7 +71,7 @@ public final class WarpCommand {
                                 player, MessageValue.get(MessageValue::teleported).replace("%warp%", warp.getName()),
                                 20, 40, 20
                         );
-                    }, 20 * TimeUnit.SECONDS.toMillis(duration));
+                    }, 20L * duration);
                     return;
                 }
 
@@ -88,7 +87,7 @@ public final class WarpCommand {
             int i = 1;
             Set<Warp> warpsByAttachment = NextWarpAPI.getInstance().findWarpsByAttachment(player);
             for (Warp warp : warpsByAttachment) {
-                if (i == 1) stringBuilder.append(", ");
+                if (i != 1) stringBuilder.append(", ");
                 stringBuilder.append(warp.getName());
                 ++i;
             }
